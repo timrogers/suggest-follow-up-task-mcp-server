@@ -29,7 +29,7 @@ async function main() {
       task: z
         .string()
         .describe(
-          'The follow-up task to propose, for example `Add unit tests for transformWidget function in src/widgets.ts` or `Handle empty string in title validation in app/models/ticket.rb`'
+          'The follow-up task to propose as an imperative statement (e.g., "Add unit tests for transformWidget function in src/widgets.ts" or "Handle empty string in title validation in app/models/ticket.rb"). Avoid vague phrases like "Consider..." or "Think about..."'
         ),
     },
     (_args: { task: string }) => {
