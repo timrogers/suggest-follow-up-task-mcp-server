@@ -133,7 +133,13 @@ class McpServerClient extends EventEmitter {
           return;
         }
 
+        let forceKillTimeout: NodeJS.Timeout | null = null;
+
         const cleanup = () => {
+          if (forceKillTimeout) {
+            clearTimeout(forceKillTimeout);
+            forceKillTimeout = null;
+          }
           this.serverProcess = null;
           this.removeAllListeners();
           resolve();
@@ -143,7 +149,7 @@ class McpServerClient extends EventEmitter {
         this.serverProcess.kill('SIGTERM');
 
         // Force kill after 2 seconds
-        setTimeout(() => {
+        forceKillTimeout = setTimeout(() => {
           if (this.serverProcess && !this.serverProcess.killed) {
             this.serverProcess.kill('SIGKILL');
           }
