@@ -10,11 +10,14 @@
     "build": "tsc",
     "start": "ts-node src/index.ts",
     "dev": "ts-node src/index.ts",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "lint": "eslint src --ext .ts",
     "lint:fix": "eslint src --ext .ts --fix",
-    "format": "prettier --write src/**/*.ts",
-    "format:check": "prettier --check src/**/*.ts",
-    "check": "npm run lint && npm run format:check && npm run build",
+    "format": "prettier --write src/**/*.ts tests/**/*.ts",
+    "format:check": "prettier --check src/**/*.ts tests/**/*.ts",
+    "check": "npm run lint && npm run format:check && npm run build && npm run test",
     "fix": "npm run lint:fix && npm run format"
   },
   "keywords": [
@@ -27,11 +30,14 @@
   "devDependencies": {
     "@eslint/js": "^9.30.1",
     "@types/node": "^24.0.13",
+    "@types/jest": "^30.0.0",
     "@typescript-eslint/eslint-plugin": "^8.36.0",
     "@typescript-eslint/parser": "^8.36.0",
     "eslint": "^9.30.1",
     "eslint-config-prettier": "^10.1.5",
+    "jest": "^30.0.4",
     "prettier": "^3.6.2",
+    "ts-jest": "^29.4.0",
     "typescript": "^5.0.0",
     "typescript-eslint": "^8.36.0"
   },
