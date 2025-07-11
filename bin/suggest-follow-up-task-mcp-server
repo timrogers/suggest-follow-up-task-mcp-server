@@ -6,11 +6,11 @@ const { spawn } = require('child_process');
 // Get the directory of this script
 const binDir = __dirname;
 const projectRoot = path.resolve(binDir, '..');
-const tsNodePath = path.join(projectRoot, 'node_modules', '.bin', 'ts-node');
+const tsxPath = path.join(projectRoot, 'node_modules', '.bin', 'tsx');
 const srcPath = path.join(projectRoot, 'src', 'index.ts');
 
-// Run ts-node with the TypeScript source file
-const child = spawn(tsNodePath, [srcPath], {
+// Run tsx with the TypeScript source file
+const child = spawn(tsxPath, [srcPath], {
   stdio: 'inherit',
   cwd: projectRoot
 });
