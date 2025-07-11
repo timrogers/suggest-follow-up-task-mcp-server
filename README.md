@@ -59,6 +59,37 @@ npm run build
 
 # Run in development mode
 npm run dev
+
+# Run tests
+npm test
+
+# Run tests with coverage
+npm run test:coverage
+
+# Run tests in watch mode
+npm run test:watch
+
+# Run all checks (lint, format, build, test)
+npm run check
+
+# Fix linting and formatting issues
+npm run fix
+```
+
+## Testing
+
+The project includes comprehensive integration tests that verify:
+
+- Server startup and shutdown
+- MCP protocol communication via stdio
+- Tool listing and execution
+- Error handling
+- JSON-RPC message handling
+
+Run tests with:
+
+```bash
+npm test
 ```
 
 ## MCP Configuration
