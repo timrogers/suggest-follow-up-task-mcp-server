@@ -23,14 +23,15 @@ async function main() {
   // Register the propose_task tool
   server.tool(
     'propose_task',
-    'Suggest a follow-up task to complete in the future in this codebase. As you work, if you identify follow-up tasks that are likely to be valuable or useful, call this tool to propose them. When you finish work, consider again, and call this tool to propose any valuable follow-up tasks you haven\'t yet proposed.',
+    "Suggest a follow-up task to complete in the future in this codebase. As you work, if you identify follow-up tasks that are likely to be valuable or useful, call this tool to propose them. When you finish work, consider again, and call this tool to propose any valuable follow-up tasks you haven't yet proposed.",
     {
       task: {
         type: 'string',
-        description: 'The follow-up task to propose, for example `Add unit tests for transformWidget function in src/widgets.ts` or `Handle empty string in title validation in app/models/ticket.rb`',
+        description:
+          'The follow-up task to propose, for example `Add unit tests for transformWidget function in src/widgets.ts` or `Handle empty string in title validation in app/models/ticket.rb`',
       },
     },
-    (args: any) => {
+    (_args: Record<string, unknown>) => {
       return {
         content: [
           {
@@ -59,7 +60,7 @@ async function main() {
 }
 
 // Handle errors at the top level
-main().catch((error) => {
+main().catch(error => {
   console.error('Server error:', error);
   process.exit(1);
 });
