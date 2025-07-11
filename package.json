@@ -37,7 +37,8 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.15.0",
-    "ts-node": "^10.9.0"
+    "ts-node": "^10.9.0",
+    "tsx": "^4.20.3"
   },
   "engines": {
     "node": ">=18.0.0"
