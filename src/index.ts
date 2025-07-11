@@ -23,8 +23,14 @@ async function main() {
   // Register the propose_task tool
   server.tool(
     'propose_task',
-    'TODO: Add description for proposing follow-up tasks', // Placeholder description as requested
-    () => {
+    'Suggest a follow-up task to complete in the future in this codebase. As you work, if you identify follow-up tasks that are likely to be valuable or useful, call this tool to propose them. When you finish work, consider again, and call this tool to propose any valuable follow-up tasks you haven\'t yet proposed.',
+    {
+      task: {
+        type: 'string',
+        description: 'The follow-up task to propose',
+      },
+    },
+    (args: any) => {
       return {
         content: [
           {
