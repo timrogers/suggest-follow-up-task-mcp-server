@@ -268,16 +268,13 @@ describe('MCP Server Integration Tests', () => {
         clientInfo: { name: 'test-client', version: '1.0.0' },
       });
 
-      // The tool should still work even with missing arguments as it doesn't validate them
-      const result = await client.sendRequest('tools/call', {
-        name: 'propose_task',
-        arguments: {},
-      });
-
-      expect(result).toBeDefined();
-      expect(result.content).toBeDefined();
-      expect(result.content[0].type).toBe('text');
-      expect(result.content[0].text).toBe('Task recorded');
+      // The tool should now properly validate arguments and reject missing required parameters
+      await expect(
+        client.sendRequest('tools/call', {
+          name: 'propose_task',
+          arguments: {},
+        })
+      ).rejects.toThrow('Invalid arguments for tool propose_task');
     });
   });
 

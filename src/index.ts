@@ -2,6 +2,7 @@
 
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { z } from 'zod';
 
 /**
  * Main function to start the MCP server
@@ -25,13 +26,11 @@ async function main() {
     'propose_task',
     "Suggest a follow-up task to complete in the future in this codebase. As you work, if you identify follow-up tasks that are likely to be valuable or useful, call this tool to propose them. When you finish work, consider again, and call this tool to propose any valuable follow-up tasks you haven't yet proposed.",
     {
-      task: {
-        type: 'string',
-        description:
-          'The follow-up task to propose, for example `Add unit tests for transformWidget function in src/widgets.ts` or `Handle empty string in title validation in app/models/ticket.rb`',
-      },
+      task: z.string().describe(
+        'The follow-up task to propose, for example `Add unit tests for transformWidget function in src/widgets.ts` or `Handle empty string in title validation in app/models/ticket.rb`'
+      ),
     },
-    (_args: Record<string, unknown>) => {
+    (_args: { task: string }) => {
       return {
         content: [
           {
