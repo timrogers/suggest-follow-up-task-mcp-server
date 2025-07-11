@@ -41,9 +41,10 @@ npx suggest-follow-up-task-mcp-server
 
 ### propose_task
 
-TODO: Add description for proposing follow-up tasks
+Suggest a follow-up task to complete in the future in this codebase. As you work, if you identify follow-up tasks that are likely to be valuable or useful, call this tool to propose them. When you finish work, consider again, and call this tool to propose any valuable follow-up tasks you haven't yet proposed.
 
-**Arguments:** None
+**Arguments:** 
+- `task` (string, required): The follow-up task to propose, for example `Add unit tests for transformWidget function in src/widgets.ts` or `Handle empty string in title validation in app/models/ticket.rb`
 
 **Returns:** "Task recorded" message
 

@@ -27,7 +27,7 @@ async function main() {
     {
       task: {
         type: 'string',
-        description: 'The follow-up task to propose',
+        description: 'The follow-up task to propose, for example `Add unit tests for transformWidget function in src/widgets.ts` or `Handle empty string in title validation in app/models/ticket.rb`',
       },
     },
     (args: any) => {
