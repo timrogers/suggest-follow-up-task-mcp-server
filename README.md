@@ -1,6 +1,39 @@
 # suggest-follow-up-task-mcp-server
 
-A basic MCP (Model Context Protocol) server for suggesting follow-up tasks, built in TypeScript.
+A basic MCP (Model Context Protocol) server to allow AI agents to propose follow-up tasks.
+
+The follow-up tasks proposed don't get stored anywhere - but adding a tool like this is a way to elicit suggestions from the model, and record them to the agent logs for future analysis.
+
+## Usage with [GitHub Copilot coding agent](https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/about-copilot-coding-agent)
+
+1. Update your repository's MCP configuration, adding the server
+
+```json
+{ 
+  "mcpServers": {
+    "suggest-follow-up-task": {
+      "type": "local",
+      "tools": ["*"],
+      "command": "npx",
+      "args": ["-y", "github:timrogers/suggest-follow-up-task-mcp-server"]
+    }
+  }
+}
+```
+
+2. Add a `.github/copilot-instructions.md` file to prompt the model to use the tool *(optional)*
+
+```md
+As you work, watch out for potential follow-up tasks in this repository that are likely to be valuable or useful.
+
+When you spot such a task, call the suggest-follow-up-task-propose_task with a short description.
+
+When you finish work, think deeply about this again, and propose any further follow-up tasks that you've missed.
+```
+
+3. Ask Copilot to work on a task. In the logs, you will see follow-up tasks proposed by Copilot.
+
+<img width="885" height="284" alt="Example follow up task in the logs" src="https://github.com/user-attachments/assets/d0cb0bdd-478c-46cb-a72f-25c9036cd85a" />
 
 ## Features
 
@@ -9,35 +42,7 @@ A basic MCP (Model Context Protocol) server for suggesting follow-up tasks, buil
 - TypeScript-based with full type safety
 - Stdio transport for MCP communication
 
-## Usage
-
-You can run this MCP server directly from GitHub without installing it to npm:
-
-```bash
-npx github:timrogers/suggest-follow-up-task-mcp-server
-```
-
-Or if you want to run it locally after cloning:
-
-```bash
-# Clone the repository
-git clone https://github.com/timrogers/suggest-follow-up-task-mcp-server.git
-cd suggest-follow-up-task-mcp-server
-
-# Install dependencies
-npm install
-
-# Build the TypeScript code
-npm run build
-
-# Start the server
-npm start
-
-# Or run directly with npx
-npx suggest-follow-up-task-mcp-server
-```
-
-## Available Tools
+## Available tools
 
 ### propose_task
 
@@ -48,7 +53,7 @@ Suggest a follow-up task to complete in the future in this codebase. As you work
 
 **Returns:** "Task recorded" message
 
-## Development
+## Local development
 
 ```bash
 # Install dependencies
@@ -104,13 +109,3 @@ This project uses GitHub Actions for continuous integration with the following f
   - Only runs on pull requests for focused feedback
 
 The CI workflow ensures code quality while providing developers with immediate, actionable feedback during the review process.
-
-## MCP Configuration
-
-To use this server with an MCP client, configure it to run:
-
-```bash
-npx github:timrogers/suggest-follow-up-task-mcp-server
-```
-
-The server uses stdio transport and will communicate via stdin/stdout with the MCP client.
