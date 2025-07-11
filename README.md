@@ -92,6 +92,19 @@ Run tests with:
 npm test
 ```
 
+## CI/CD and Code Quality
+
+This project uses GitHub Actions for continuous integration with the following features:
+
+- **Multi-version Node.js testing**: Tests run on Node.js 18.x and 20.x
+- **Comprehensive checks**: Linting (ESLint), formatting (Prettier), building (TypeScript), and testing (Jest)
+- **Reviewdog integration**: Automated PR review comments for linting and TypeScript compilation issues
+  - ESLint issues are posted as inline PR comments
+  - TypeScript compilation errors are highlighted directly in the PR
+  - Only runs on pull requests for focused feedback
+
+The CI workflow ensures code quality while providing developers with immediate, actionable feedback during the review process.
+
 ## MCP Configuration
 
 To use this server with an MCP client, configure it to run:
