@@ -42,7 +42,7 @@
     "typescript-eslint": "^8.36.0"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.15.0",
+    "@modelcontextprotocol/sdk": "^1.17.0",
     "ts-node": "^10.9.0",
     "tsx": "^4.20.3"
   },
